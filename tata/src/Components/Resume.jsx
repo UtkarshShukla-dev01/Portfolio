@@ -43,7 +43,7 @@ const Resume = () => {
       <div className="w-full h-[80vh] md:h-[600px] overflow-hidden rounded-lg shadow-md border border-gray-700 relative">
         {loading && <Loader />}
         <iframe
-          src="../Utkarsh_Shukla_Resume_3.pdf"
+          src="/Utkarsh_Shukla_Resume_3.pdf"
           title="Resume"
           className="w-full h-full absolute top-0 left-0 transition-opacity duration-700"
           frameBorder="0"
@@ -56,7 +56,7 @@ const Resume = () => {
       </div>
       <div className="mt-6 text-center">
         <a
-          href="../public/Utkarsh_Shukla_Resume_3.pdf"
+          href="/Utkarsh_Shukla_Resume_3.pdf"
           download
           className="text-yellow-400 hover:text-yellow-500 font-semibold inline-flex items-center"
         >
