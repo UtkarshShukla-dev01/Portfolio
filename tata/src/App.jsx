@@ -49,7 +49,7 @@ function App() {
         <div className="bg-[#1E1E1F] rounded-3xl min-h-[calc(100vh-64px)] relative">
           <div className="flex items-center justify-between px-6 pt-6">
             <div>
-              <h2 className="text-[#FAFAFA] text-[32px] font-bold mb-2" style={{ fontFamily: 'Poppins, sans-serif' }>
+              <h2 className="text-[#FAFAFA] text-[32px] font-bold mb-2" style={{ fontFamily: 'Poppins, sans-serif'}} }>
                 {getHeading()}
               </h2>
 
