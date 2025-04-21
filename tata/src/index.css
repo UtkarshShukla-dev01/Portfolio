@@ -322,3 +322,9 @@
     display: block; /* Show toggle button on smaller screens */
   }
 }
+
+/* index.css */
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
