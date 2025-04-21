@@ -1,18 +1,18 @@
 import { useState } from "react";
 
-import About from "./components/About";
+import About from "./Components/About";
 
-import Resume from "./components/Resume";
+import Resume from "./Components/Resume";
 
-import Projects from "./components/Projects";
+import Projects from "./Components/Projects";
 
-import Contact from "./components/Contact";
+import Contact from "./Components/Contact";
 
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./Components/Sidebar";
 
-import Navigation from "./components/Navigation";
+import Navigation from "./Components/Navigation";
 
-import Certificates from "./components/Certificates"; // Import Certificates component
+import Certificates from "./Components/Certificates"; // Import Certificates component
 
 import "./App.css";
 
