@@ -64,62 +64,26 @@ const Contact = () => {
   return (
     <div className="bg-[#1E1E1F] p-8 rounded-3xl shadow-lg">
       <div className="mb-6 flex justify-center relative">
-        <div className="relative w-full" style={{ width: '838px', height: '380px' }}>
+        <div className="relative w-full h-[180px] md:h-[380px]">
           {mapLoading && <Loader />}
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.123456789012!2d77.497703315056!3d28.474388982456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI4JzI1LjgiTiA3N8KwMzAnNTMuNyJF!5e0!3m2!1sen!2sin!4v1633021234567!5m2!1sen!2sin"
-            width="838px"
-            height="380px"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.123456789012!2d77.497703315056!3d28.474388982456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI4JzI1LjgiTiA3N8KwMzAnNTMuNyJF!5e0!3m2!1sen!2sin!4v1633021234567!5m2!1sen!2sin&gestureHandling=greedy"
+            width="100%"
+            height="100%"
+            allowFullScreen=""
+            aria-hidden="false"
+            tabIndex="0"
             style={{
-              borderBottomColor: 'rgb(56, 56, 56)',
-              borderBottomLeftRadius: '18px',
-              borderBottomRightRadius: '18px',
-              borderBottomStyle: 'solid',
-              borderBottomWidth: '1px',
-              borderImageOutset: '0',
-              borderImageRepeat: 'stretch',
-              borderImageSlice: '100%',
-              borderImageSource: 'none',
-              borderImageWidth: '1',
-              borderLeftColor: 'rgb(56, 56, 56)',
-              borderLeftStyle: 'solid',
-              borderLeftWidth: '1px',
-              borderRightColor: 'rgb(56, 56, 56)',
-              borderRightStyle: 'solid',
-              borderRightWidth: '1px',
-              borderTopColor: 'rgb(56, 56, 56)',
-              borderTopLeftRadius: '18px',
-              borderTopRightRadius: '18px',
-              borderTopStyle: 'solid',
-              borderTopWidth: '1px',
-              boxSizing: 'border-box',
-              display: 'block',
-              fontFamily: 'Poppins, sans-serif',
-              fontFeatureSettings: 'normal',
-              fontVariationSettings: 'normal',
-              lineHeight: '24px',
-              marginBottom: '30px',
-              marginLeft: '0px',
-              marginRight: '0px',
-              marginTop: '0px',
-              overflowX: 'hidden',
-              overflowY: 'hidden',
-              paddingBottom: '0px',
-              paddingLeft: '0px',
-              paddingRight: '0px',
-              paddingTop: '0px',
-              position: 'relative',
-              tabSize: '4',
-              textSizeAdjust: '100%',
-              unicodeBidi: 'isolate',
-              visibility: 'visible',
-              WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-              filter: 'grayscale(100%)',
+              borderRadius: '18px',
+              border: '1px solid rgb(56, 56, 56)',
+              width: '100%',
+              height: '100%',
               opacity: mapLoading ? 0 : 1,
               transition: 'opacity 0.7s',
               zIndex: 20,
+              filter: 'grayscale(100%)',
+              pointerEvents: 'auto', // <-- ensure pointer events are enabled
             }}
-            allowFullScreen=""
             loading="lazy"
             title="Google Maps"
             onLoad={() => setMapLoading(false)}

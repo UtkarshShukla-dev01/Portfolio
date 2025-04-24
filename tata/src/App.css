@@ -322,3 +322,68 @@
     display: block; /* Show toggle button on smaller screens */
   }
 }
+
+body, html {
+  background-color: #121212; /* Set the background color to match your app's theme */
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
+  margin: 0; /* Remove default margin */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+#root {
+  min-height: 100vh; /* Ensure the root element covers the full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media (min-width: 1250px) {
+  /* REMOVE or COMMENT OUT everything in this block to revert to your previous layout */
+  /*
+  .app-1250-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #121212;
+    gap: 48px;
+  }
+  .sidebar-1250 {
+    width: 320px;
+    min-width: 320px;
+    background: #1E1E1F;
+    border-radius: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1.5rem;
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .main-content-1250 {
+    max-width: 950px;
+    width: 100%;
+    background: #1E1E1F;
+    border-radius: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
+    padding: 3rem 3rem 2.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    margin: 0;
+    justify-content: flex-start;
+  }
+  .nav-bar-1250 {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+  }
+  .main-inner-content {
+    width: 100%;
+  }
+  */
+}

@@ -1,11 +1,21 @@
- 
 
- 
-
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 
 const Resume = () => { 
   const [loading, setLoading] = useState(true);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  // Check screen size on component mount
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024); // Adjust the breakpoint as needed
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Hamster loader markup
   const Loader = () => (
@@ -32,7 +42,7 @@ const Resume = () => {
   );
 
   return (
-    <div className="bg-[#1E1E1F] p-8 rounded-3xl shadow-lg">
+    <div className={`bg-[#1E1E1F] p-8 rounded-3xl shadow-lg ${isLargeScreen ? 'w-full md:w-[1000px] mx-auto' : ''}`}>
       <h2 className="text-4xl font-bold text-white mb-6 text-center">
         <img  
           src="https://cdn0.iconfinder.com/data/icons/find-a-job-and-interview-filled-outline/512/interview_business_job_offer_manager_employment_resume_contract_employee-128.png"  
@@ -40,10 +50,10 @@ const Resume = () => {
           className="mx-auto w-16 h-16"
         />
       </h2>
-      <div className="w-full h-[80vh] md:h-[600px] overflow-hidden rounded-lg shadow-md border border-gray-700 relative">
+      <div className={`w-full ${isLargeScreen ? 'h-[700px]' : 'h-[80vh]'} overflow-hidden rounded-lg shadow-md border border-gray-700 relative`}>
         {loading && <Loader />}
         <iframe
-          src="../public/Utkarsh_Shukla_Resume_3.pdf"
+          src="/Utkarsh_Shukla_resume_3.pdf"
           title="Resume"
           className="w-full h-full absolute top-0 left-0 transition-opacity duration-700"
           frameBorder="0"
@@ -56,7 +66,7 @@ const Resume = () => {
       </div>
       <div className="mt-6 text-center">
         <a
-          href="../public/Utkarsh_Shukla_Resume_3.pdf"
+          href="/Utkarsh_Shukla_resume_3.pdf"
           download
           className="text-yellow-400 hover:text-yellow-500 font-semibold inline-flex items-center"
         >

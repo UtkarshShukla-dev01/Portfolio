@@ -1,178 +1,141 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 
 const Sidebar = () => { 
-
   const [showContacts, setShowContacts] = useState(false); 
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return ( 
+    <div
+      className="
+        bg-[#1E1E1F]
+        w-[550px]
+        mx-auto
+        mt-8
+        rounded-3xl
+        shadow-2xl
+        p-9
+        flex flex-col
+        z-50
+        relative
+        md:w-[320px] md:fixed md:left-8 md:top-8 md:rounded-[24px] md:mx-0 md:mt-0 md:max-w-none md:p-5
+      "
+    > 
+<button  
+  className="absolute top-0 right-0
+             px-2 py-1
+             text-yellow-200
+             font-bold
+             text-xs
+             rounded-tr-3xl
+             rounded-bl-2xl
+             border-l border-b border-white/10
+             bg-[#1E1E1F]
+             z-10
+             md:hidden
+             transition
+             cursor-pointer
+             hover:bg-[#2A2A2A]
+             hover:shadow-[0_0_10px_rgba(255,255,255,0.1)]"
+  onClick={() => setShowContacts(!showContacts)} 
+> 
+  {showContacts ? "Hide Contacts" : "Show Contacts"} 
+</button>
 
-    <div className="w-full md:w-[320px] fixed left-0 top-0 md:left-8 md:top-8 bg-[#1E1E1F] p-5 rounded-none md:rounded-[24px] flex flex-col md:block"> 
+
+
 
       {/* Header Section */} 
-
-      <div className="flex items-center md:flex-col"> 
-
+      <div className="flex items-center md:flex-col w-full"> 
         <div className="w-16 h-16 md:w-32 md:h-32 bg-[#2a2a2a] rounded-full md:rounded-[25px] overflow-hidden"> 
-
           <img  
-
             src="/memoji-dev.png"  
-
             alt="Profile"  
-
             className="w-full h-full object-cover" 
-
           /> 
-
         </div> 
-
-        <div className="ml-4 md:ml-0 mt-0 md:mt-4"> 
-
+        <div className="ml-4 md:ml-0 mt-0 md:mt-4 flex-1"> 
           <h1 className="text-[20px] md:text-[42px] font-bold text-white tracking-tight leading-none"> 
-
-            Utkarsh<br className="hidden md:block" />Shukla 
-
+            Utkarsh{" "}<br className="hidden md:block" />Shukla 
           </h1> 
-
           <div className="bg-[#2a2a2a] text-gray-300 text-sm md:text-base mt-2 md:mt-3 px-3 py-1 rounded-lg inline-block"> 
-
             Full Stack Developer 
-
           </div> 
-
         </div> 
-
-        <button  
-
-          className="ml-auto md:hidden bg-yellow-500 text-black px-3 py-1 rounded-lg text-sm" 
-
-          onClick={() => setShowContacts(!showContacts)} 
-
-        > 
-
-          {showContacts ? "Hide Contacts" : "Show Contacts"} 
-
-        </button> 
-
       </div> 
 
-      {/* Contacts Section */} 
-
-      {(showContacts || window.innerWidth >= 768) && ( 
-
-        <div className="mt-6 md:mt-8"> 
-
-          <div className="w-full h-[1px] bg-white/20 mb-6"></div> 
-
-          <div className="space-y-6"> 
-
-            {/* Email Section */} 
-
-            <div className="flex items-center gap-3"> 
-
-              <div className="bg-[#2a2a2a] p-2 rounded-lg flex items-center justify-center"> 
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500"> 
-
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /> 
-
-                </svg> 
-
-              </div> 
-
-              <div className="flex flex-col items-start"> 
-
-                <span className="text-gray-400 text-xs">EMAIL</span> 
-
-                <p className="text-white text-[15px]" style={{ margin: '0' }}>Utkarshshukla.cse@gmail.com</p> 
-
-              </div> 
-
-            </div> 
-
-            {/* Birthday Section */} 
-
-            <div className="flex items-center gap-3"> 
-
-              <div className="bg-[#2a2a2a] p-2 rounded-lg flex items-center justify-center"> 
-
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500"> 
-
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /> 
-
-                </svg> 
-
-              </div> 
-
-              <div className="flex flex-col items-start"> 
-
-                <span className="text-gray-400 text-xs">BIRTHDAY</span> 
-
-                <p className="text-white text-[15px]" style={{ margin: '0' }}>March 20, 2003</p> 
-
-              </div> 
-
-            </div> 
-
-            {/* Phone Number Section */} 
-
-            <div className="flex items-center gap-3"> 
-
-              <div className="bg-[#2a2a2a] p-2 rounded-lg flex items-center justify-center"> 
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500"> 
-
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.11 19.42 19.42 0 01-6-6A19.86 19.86 0 013.11 4.18 2 2 0 015.11 2h3a2 2 0 012 1.72 12.66 12.66 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.66 12.66 0 002.81.7 2 2 0 011.72 2z" /> 
-
-                </svg> 
-
-              </div> 
-
-              <div className="flex flex-col items-start"> 
-
-                <span className="text-gray-400 text-xs">PHONE</span> 
-
-                <p className="text-white text-[15px]" style={{ margin: '0' }}>+91 8765191045</p> 
-
-              </div> 
-
-            </div> 
-
-            <div className="flex items-center gap-3"> 
-
-              <div className="bg-[#2a2a2a] p-2 rounded-lg flex items-center justify-center"> 
-
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500"> 
-
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> 
-
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /> 
-
-                </svg> 
-
-              </div> 
-
-              <div className="flex flex-col items-start"> 
-
-                <span className="text-gray-400 text-xs">LOCATION</span> 
-
-                <p className="text-white text-[15px]" style={{ margin: '0' }}>Noida, India</p> 
-
-              </div> 
-
-            </div> 
-
-          </div> 
-
-        </div> 
-
-      )} 
-
-      {/* Social Icons */} 
-
-      <div className="flex justify-center gap-4 mt-8"> {/* Increased margin-top from mt-6 to mt-8 */} 
-
-        <a  
+      {/* Contacts Section and Socials - only show on mobile if toggled, always show on md+ */}
+      {(showContacts || isDesktop) && (
+        <>
+          <div className="block md:block w-full">
+            <div className="mt-6 md:mt-8">
+              <div className="w-full h-[1px] bg-white/20 mb-6"></div>
+              <div className="space-y-6">
+                {/* Email Section */}
+                <div className="flex items-center gap-3">
+                  <div className="bg-[#2a2a2a] p-2 rounded-lg flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-gray-400 text-xs">EMAIL</span>
+                    <p className="text-white text-[15px]" style={{ margin: '0' }}>Utkarshshukla.cse@gmail.com</p>
+                  </div>
+                </div>
+                {/* Birthday Section */}
+                <div className="flex items-center gap-3">
+                  <div className="bg-[#2a2a2a] p-2 rounded-lg flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" className="text-yellow-500">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 2v2m8-2v2M3 9h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-gray-400 text-xs">BIRTHDAY</span>
+                    <p className="text-white text-[15px]" style={{ margin: '0' }}>March 20, 2003</p>
+                  </div>
+                </div>
+                {/* Phone Number Section */}
+                <div className="flex items-center gap-3">
+                  <div className="bg-[#2a2a2a] p-2 rounded-lg flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.11 19.42 19.42 0 01-6-6A19.86 19.86 0 013.11 4.18 2 2 0 015.11 2h3a2 2 0 012 1.72 12.66 12.66 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.66 12.66 0 002.81.7 2 2 0 011.72 2z" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-gray-400 text-xs">PHONE</span>
+                    <p className="text-white text-[15px]" style={{ margin: '0' }}>+91 8765191045</p>
+                  </div>
+                </div>
+                {/* Location Section */}
+                <div className="flex items-center gap-3">
+                  <div className="bg-[#2a2a2a] p-2 rounded-lg flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col items-start">
+                    <span className="text-gray-400 text-xs">LOCATION</span>
+                    <p className="text-white text-[15px]" style={{ margin: '0' }}>Noida, India</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Social Icons */}
+          
+          <div className="flex justify-center gap-4 mt-8">
+ <a  
 
           href="https://www.instagram.com/Utkarsh._.009"  
 
@@ -191,8 +154,7 @@ const Sidebar = () => {
           </svg> 
 
         </a> 
-
-        <a  
+         <a  
 
           href="https://www.linkedin.com/in/utkarsh-shukla-b33bb323b/"  
 
@@ -211,8 +173,7 @@ const Sidebar = () => {
           </svg> 
 
         </a> 
-
-        <a  
+         <a  
 
           href="https://leetcode.com/u/Utkarsh_Shukla20032003/"  
 
@@ -227,8 +188,7 @@ const Sidebar = () => {
           <img src="https://cdn.iconscout.com/icon/free/png-256/free-leetcode-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-4-pack-logos-icons-2944960.png" alt="LeetCode Icon" width="18" height="18" className="text-white" /> 
 
         </a> 
-
-        <a  
+         <a  
 
           href="https://github.com/UtkarshShukla-dev01"  
 
@@ -247,7 +207,6 @@ const Sidebar = () => {
           </svg> 
 
         </a> 
-
         <a  
 
           href="https://wa.me/918765191045"  
@@ -268,12 +227,12 @@ const Sidebar = () => {
 
         </a> 
 
-      </div> 
 
-    </div> 
-
+          </div>
+        </>
+      )}
+    </div>
   ); 
+};
 
-}; 
-
-export default Sidebar; 
+export default Sidebar;
