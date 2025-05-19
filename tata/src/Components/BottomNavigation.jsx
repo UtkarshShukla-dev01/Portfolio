@@ -15,8 +15,10 @@ export default function BottomNavigation({ currentSection, setCurrentSection }) 
         <button
           key={item.key}
           onClick={() => setCurrentSection(item.key)}
-          className={`py-2 px-4 text-sm font-medium transition-colors cursor-pointer ${
-            currentSection === item.key ? "text-yellow-400" : "text-gray-300"
+          className={`py-2 text-sm transition-colors cursor-pointer ${
+            currentSection === item.key
+              ? "text-yellow-400"
+              : "text-gray-300"
           }`}
         >
           <span className="block w-full text-center truncate overflow-hidden whitespace-nowrap">
