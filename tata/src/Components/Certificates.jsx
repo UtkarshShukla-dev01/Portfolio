@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 
 const Certificates = () => {
   const certificates = [
@@ -6,14 +6,16 @@ const Certificates = () => {
       title: "FRONTEND DEVELOPER (REACT)",
       issuer: "HackerRank",
       date: "April 16, 2025",
-      description: "Passed the HackerRank role certification test for Frontend Developer (React).",
+      description:
+        "Passed the HackerRank role certification test for Frontend Developer (React).",
       image: "/certificates2/frontend_developer_react_certificate.png",
     },
     {
       title: "CYBERSECURITY FOR EVERYONE",
       issuer: "UNIVERSITY OF MARYLAND",
       date: "Dec 7, 2023",
-      description: "Completed certification on cybersecurity fundamentals by the University of Maryland.",
+      description:
+        "Completed certification on cybersecurity fundamentals by the University of Maryland.",
       image: "/certificates2/Cybersecurity_for_Everyone.png",
     },
     {
@@ -76,7 +78,8 @@ const Certificates = () => {
       title: "THE BITS AND BYTES OF COMPUTER NETWORKING",
       issuer: "GOOGLE",
       date: "APR 17, 2023",
-      description: "Gained expertise in computer networking fundamentals through the Bits and Bytes.",
+      description:
+        "Gained expertise in computer networking fundamentals through the Bits and Bytes.",
       image: "/certificates2/The Bits and Bytes of Computer Networking.png",
     },
     {
@@ -87,6 +90,42 @@ const Certificates = () => {
       image: "/certificates2/Process Data from Dirty to Clean.png",
     },
   ];
+
+  // Track loading state of each image
+  const [loadingStates, setLoadingStates] = useState(Array(certificates.length).fill(true));
+
+  // Hamster loader component
+  const Loader = () => (
+    <div className="absolute top-0 left-0 w-full h-full bg-[#282829cc] flex justify-center items-center z-10">
+      <div className="wheel-and-hamster" aria-label="Hamster running in a wheel" style={{width: "60px", height: "60px"}}>
+        <div className="wheel"></div>
+        <div className="hamster">
+          <div className="hamster__body">
+            <div className="hamster__head">
+              <div className="hamster__ear"></div>
+              <div className="hamster__eye"></div>
+              <div className="hamster__nose"></div>
+            </div>
+            <div className="hamster__limb hamster__limb--fr"></div>
+            <div className="hamster__limb hamster__limb--fl"></div>
+            <div className="hamster__limb hamster__limb--br"></div>
+            <div className="hamster__limb hamster__limb--bl"></div>
+            <div className="hamster__tail"></div>
+          </div>
+        </div>
+        <div className="spoke"></div>
+      </div>
+    </div>
+  );
+
+  // Called when image finishes loading
+  const handleImageLoad = (index) => {
+    setLoadingStates((prev) => {
+      const copy = [...prev];
+      copy[index] = false;
+      return copy;
+    });
+  };
 
   return (
     <div className="bg-[#1E1E1F] p-8 rounded-3xl shadow-lg">
@@ -99,6 +138,7 @@ const Certificates = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {certificates.map((certificate, index) => {
+          // Derive pdf path from image name by replacing .png with .pdf
           const pdfPath = `/certificates/${certificate.image.split("/").pop().replace(".png", ".pdf")}`;
           return (
             <div
@@ -114,18 +154,17 @@ const Certificates = () => {
                   <strong>Issuer:</strong> {certificate.issuer} | <strong>Date:</strong> {certificate.date}
                 </p>
               </div>
-              <div className="mt-4">
-                <a
-                  href={pdfPath}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Click to view PDF"
-                >
+              <div className="mt-4 relative">
+                <a href={pdfPath} target="_blank" rel="noopener noreferrer" title="Click to view PDF">
                   <div className="relative w-full h-48 sm:h-64 md:h-72 lg:h-80 rounded-md overflow-hidden hover:scale-105 transition-transform duration-300">
+                    {loadingStates[index] && <Loader />}
                     <img
                       src={certificate.image}
                       alt={certificate.title}
-                      className="w-full h-full object-contain cursor-pointer"
+                      onLoad={() => handleImageLoad(index)}
+                      className={`w-full h-full object-contain cursor-pointer transition-opacity duration-700 ${
+                        loadingStates[index] ? "opacity-0" : "opacity-100"
+                      }`}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center text-white text-sm opacity-0 hover:opacity-100 transition-opacity duration-300">
                       Click to view PDF
