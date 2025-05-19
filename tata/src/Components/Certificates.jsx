@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Loader from "../components/Loader";
 
 const Certificates = () => {
   const certificates = [
@@ -90,35 +91,8 @@ const Certificates = () => {
       image: "/certificates2/Process Data from Dirty to Clean.png",
     },
   ];
-
-  // Track loading state of each image
   const [loadingStates, setLoadingStates] = useState(Array(certificates.length).fill(true));
 
-  // Hamster loader component
-  const Loader = () => (
-    <div className="absolute top-0 left-0 w-full h-full bg-[#282829cc] flex justify-center items-center z-10">
-      <div className="wheel-and-hamster" aria-label="Hamster running in a wheel" style={{width: "60px", height: "60px"}}>
-        <div className="wheel"></div>
-        <div className="hamster">
-          <div className="hamster__body">
-            <div className="hamster__head">
-              <div className="hamster__ear"></div>
-              <div className="hamster__eye"></div>
-              <div className="hamster__nose"></div>
-            </div>
-            <div className="hamster__limb hamster__limb--fr"></div>
-            <div className="hamster__limb hamster__limb--fl"></div>
-            <div className="hamster__limb hamster__limb--br"></div>
-            <div className="hamster__limb hamster__limb--bl"></div>
-            <div className="hamster__tail"></div>
-          </div>
-        </div>
-        <div className="spoke"></div>
-      </div>
-    </div>
-  );
-
-  // Called when image finishes loading
   const handleImageLoad = (index) => {
     setLoadingStates((prev) => {
       const copy = [...prev];
@@ -138,7 +112,6 @@ const Certificates = () => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {certificates.map((certificate, index) => {
-          // Derive pdf path from image name by replacing .png with .pdf
           const pdfPath = `/certificates/${certificate.image.split("/").pop().replace(".png", ".pdf")}`;
           return (
             <div
