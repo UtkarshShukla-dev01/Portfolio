@@ -89,7 +89,8 @@ const About = () => {
       </div>
 
       <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6">Tech Experience</h2>
-      <div className="grid grid-cols-2 md:grid-cols-5 xl:grid-cols-5 gap-4 md:gap-6 mb-8 md:mb-12">
+      <div className="grid grid-cols-2 md:grid-cols-5 xl:grid-cols-5 gap-4 md:gap-6 mb-8 md:mb-12 w-full">
+
         {techStack.map((tech, index) => {
           if (tech.name === "MongoDB") {
             // Hide on screens smaller than 768px (below md)
@@ -129,8 +130,8 @@ const About = () => {
           <div key={index} className="bg-[#1a1a1a] p-4 md:p-6 rounded-lg shadow-lg flex items-start gap-4">
             <span className="text-3xl md:text-4xl text-yellow-400 bg-[#2a2a2a] p-2 rounded-full">{skill.icon}</span>
             <div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-1 md:mb-2">{skill.title}</h3>
-              <p className="text-gray-400 text-sm md:text-base">{skill.description}</p>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1 md:mb-2 max-sm:break-all">{skill.title}</h3>
+              <p className="text-gray-400 text-sm md:text-base max-sm:break-all">{skill.description}</p>
             </div>
           </div>
         ))}

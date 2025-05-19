@@ -128,7 +128,7 @@ const Certificates = () => {
 
   return (
     <div className="bg-[#1E1E1F] p-8 rounded-3xl shadow-lg">
-      <h2 className="text-4xl font-bold text-white mb-6 text-center">
+      <h2 className="text-4xl font-bold text-yellow-400 mb-6 text-center">
         <img
           src="https://cdni.iconscout.com/illustration/premium/thumb/certificate-illustration-download-in-svg-png-gif-file-formats--cup-crown-scholar-reward-achievement-pack-sports-games-illustrations-2804238.png?f=webp"
           alt="Certificate Icon"
@@ -142,14 +142,8 @@ const Certificates = () => {
             className="bg-[#282829] p-6 rounded-lg shadow-lg flex flex-col justify-between hover:shadow-2xl hover:scale-105 transition-transform duration-300 certificate-card"
           >
             <div className="certificate-info">
-              <h3 className="text-2xl text-yellow text-bold mb-2">{certificate.title}</h3>
-              <p className="text-gray mb-1">
-                Issued by: <span className="font-medium">{certificate.issuer}</span>
-              </p>
-              <p className="text-gray mb-4">
-                Date: <span className="font-medium">{certificate.date}</span>
-              </p>
-              <p className="text-gray mb-4">{certificate.description}</p>
+              <h3 className="text-lg md:text-2xl font-bold text-yellow-400 mb-1 md:mb-2 max-sm:break-all">{certificate.title}</h3>
+              <p className="text-gray-400 text-xs md:text-base max-sm:break-all">{certificate.description}</p>
             </div>
             <div className="mt-4">
               <div className="relative w-full h-48">

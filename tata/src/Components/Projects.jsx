@@ -236,11 +236,8 @@ const Projects = () => {
 
             <div> 
 
-              <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3> 
-
-              <p className="text-gray-400 mb-2">Web development</p> 
-
-              <p className="text-gray-400 mb-4">{project.description}</p> 
+              <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2 max-sm:break-all">{project.title}</h3>
+              <p className="text-gray-400 text-xs md:text-base max-sm:break-all">{project.description}</p>
 
             </div> 
 
