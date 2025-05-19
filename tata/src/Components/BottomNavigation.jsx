@@ -10,12 +10,12 @@ const navItems = [
 
 export default function BottomNavigation({ currentSection, setCurrentSection }) {
   return (
-    <nav className="flex justify-center items-center w-full space-x-6">
+    <nav className="flex justify-center items-center w-full space-x-6 py-3">
       {navItems.map((item) => (
         <button
           key={item.key}
           onClick={() => setCurrentSection(item.key)}
-          className={`py-1 text-xs transition-colors cursor-pointer ${
+          className={`py-2 px-4 text-sm font-medium transition-colors cursor-pointer ${
             currentSection === item.key ? "text-yellow-400" : "text-gray-300"
           }`}
         >
