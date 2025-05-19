@@ -61,7 +61,9 @@ const About = () => {
     { name: "APIs", icon: <img src="https://cdn-icons-png.flaticon.com/512/627/627558.png" alt="APIs" className="w-12 h-12 transition-transform transform hover:scale-115" /> },
     { name: "CSS3", icon: <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg" alt="CSS3" className="w-12 h-12 transition-transform transform hover:scale-115" /> },
     { name: "JavaScript", icon: <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-javascript-3d-icon-download-in-png-blend-fbx-gltf-file-formats--html-logo-vue-angular-coding-lang-pack-logos-icons-7577991.png?f=webp" alt="JavaScript" className="w-12 h-12 transition-transform transform hover:scale-115" /> },
-    { name: "Bootstrap", icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" className="w-12 h-12 transition-transform transform hover:scale-115" /> }
+    { name: "Bootstrap", icon: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" className="w-12 h-12 transition-transform transform hover:scale-115" /> },
+    { name: "MongoDB", icon: <img src="https://icon.icepanel.io/Technology/svg/MongoDB.svg" alt="MongoDB" className="w-12 h-12 transition-transform transform hover:scale-115" /> },
+    
   ];
 
   return (
@@ -87,15 +89,38 @@ const About = () => {
       </div>
 
       <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6">Tech Experience</h2>
-      <div className="grid grid-cols-2 md:grid-cols-7 gap-4 md:gap-6 mb-8 md:mb-12">
-        {techStack.map((tech, index) => (
-          <div key={index} className="bg-[#1a1a1a] p-4 md:p-6 rounded-lg shadow-lg flex flex-col items-center gap-2 md:gap-4">
-            <div className="w-12 h-12 flex items-center justify-center">
-              {tech.icon}
+      <div className="grid grid-cols-2 md:grid-cols-5 xl:grid-cols-5 gap-4 md:gap-6 mb-8 md:mb-12">
+        {techStack.map((tech, index) => {
+          if (tech.name === "MongoDB") {
+            // Hide on screens smaller than 768px (below md)
+            return (
+              <div
+                key={index}
+                className="hidden md:flex bg-[#1a1a1a] p-4 md:p-6 rounded-lg shadow-lg flex-col items-center gap-2 md:gap-4 min-w-0"
+              >
+                <div className="w-12 h-12 flex items-center justify-center">
+                  {tech.icon}
+                </div>
+                <h3 className="text-base font-bold text-white text-center truncate overflow-hidden whitespace-nowrap w-full min-w-0">
+                  {tech.name}
+                </h3>
+              </div>
+            );
+          }
+          return (
+            <div
+              key={index}
+              className="bg-[#1a1a1a] p-4 md:p-6 rounded-lg shadow-lg flex flex-col items-center gap-2 md:gap-4 min-w-0"
+            >
+              <div className="w-12 h-12 flex items-center justify-center">
+                {tech.icon}
+              </div>
+              <h3 className="text-base font-bold text-white text-center truncate overflow-hidden whitespace-nowrap w-full min-w-0">
+                {tech.name}
+              </h3>
             </div>
-            <h3 className={`text-base md:text-xl font-bold text-white ${tech.textClass || ''}`}>{tech.name}</h3>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6">Soft Skills</h2>

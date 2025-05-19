@@ -1,82 +1,85 @@
+
+
+
 import React, { useState, useEffect } from 'react'; 
 
 const Sidebar = () => { 
   const [showContacts, setShowContacts] = useState(false); 
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const [isXL, setIsXL] = useState(window.innerWidth >= 1280);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 768);
+      setIsXL(window.innerWidth >= 1280);
     };
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return ( 
     <div
-      className="
+      className={`
         bg-[#1E1E1F]
-        w-[550px]
+        w-[95vw] max-w-[980px]
         mx-auto
         mt-8
         rounded-3xl
         shadow-2xl
-        p-9
+        p-6
         flex flex-col
         z-50
         relative
-        md:w-[320px] md:fixed md:left-8 md:top-8 md:rounded-[24px] md:mx-0 md:mt-0 md:max-w-none md:p-5
-      "
+        transition-all
+        xl:w-[320px] xl:fixed xl:left-8 xl:top-8 xl:rounded-[24px] xl:mx-0 xl:mt-0 xl:max-w-none xl:p-5 
+      `}
     > 
-<button  
-  className="absolute top-0 right-0
-             px-2 py-1
-             text-yellow-200
-             font-bold
-             text-xs
-             rounded-tr-3xl
-             rounded-bl-2xl
-             border-l border-b border-white/10
-             bg-[#1E1E1F]
-             z-10
-             md:hidden
-             transition
-             cursor-pointer
-             hover:bg-[#2A2A2A]
-             hover:shadow-[0_0_10px_rgba(255,255,255,0.1)]"
-  onClick={() => setShowContacts(!showContacts)} 
-> 
-  {showContacts ? "Hide Contacts" : "Show Contacts"} 
-</button>
+      {/* Show Contacts Button - only below xl */}
+      {/* For screens below sm, show the chevron button; for sm and above but below xl, show the text button */}
+      {!isXL && (
+        <>
+          {/* Below sm: chevron button */}
+          <button
+            className="block sm:hidden absolute top-0 right-0 w-12 h-12 flex items-center justify-center bg-[#232325] rounded-tr-3xl rounded-bl-2xl border-l border-b border-white/10 z-10 transition hover:bg-[#2A2A2A] shadow-md"
+            onClick={() => setShowContacts(!showContacts)}
+            aria-label={showContacts ? "Hide Contacts" : "Show Contacts"}
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFE082" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          {/* sm and up: text button */}
+          <button
+            className="hidden sm:block absolute top-0 right-0 px-2 py-1 text-yellow-200 font-bold text-xs rounded-tr-3xl rounded-bl-2xl border-l border-b border-white/10 bg-[#1E1E1F] z-10 transition cursor-pointer hover:bg-[#2A2A2A] hover:shadow-[0_0_10px_rgba(255,255,255,0.1)]"
+            onClick={() => setShowContacts(!showContacts)}
+          >
+            {showContacts ? "Hide Contacts" : "Show Contacts"}
+          </button>
+        </>
+      )}
 
-
-
-
-      {/* Header Section */} 
-      <div className="flex items-center md:flex-col w-full"> 
-        <div className="w-16 h-16 md:w-32 md:h-32 bg-[#2a2a2a] rounded-full md:rounded-[25px] overflow-hidden"> 
+      {/* Header Section */}
+      <div className={`flex items-center ${isXL ? "xl:flex-col" : ""} w-full`}>
+        <div className={`w-16 h-16 ${isXL ? "xl:w-32 xl:h-32" : ""} bg-[#2a2a2a] rounded-full ${isXL ? "xl:rounded-[25px]" : ""} overflow-hidden`}>
           <img  
             src="/memoji-dev.png"  
             alt="Profile"  
             className="w-full h-full object-cover" 
           /> 
         </div> 
-        <div className="ml-4 md:ml-0 mt-0 md:mt-4 flex-1"> 
-          <h1 className="text-[20px] md:text-[42px] font-bold text-white tracking-tight leading-none"> 
-            Utkarsh{" "}<br className="hidden md:block" />Shukla 
+        <div className={`ml-4 ${isXL ? "xl:ml-0 xl:mt-4" : "mt-0"} flex-1`}>
+          <h1 className={`text-[20px] ${isXL ? "xl:text-[42px]" : ""} font-bold text-white tracking-tight leading-none`}>
+            Utkarsh{" "}<br className={`hidden ${isXL ? "xl:block" : ""}`} />Shukla 
           </h1> 
-          <div className="bg-[#2a2a2a] text-gray-300 text-sm md:text-base mt-2 md:mt-3 px-3 py-1 rounded-lg inline-block"> 
+          <div className={`bg-[#2a2a2a] text-gray-300 text-sm ${isXL ? "xl:text-base xl:mt-3" : "mt-2"} px-3 py-1 rounded-lg inline-block`}>
             Full Stack Developer 
           </div> 
         </div> 
       </div> 
 
-      {/* Contacts Section and Socials - only show on mobile if toggled, always show on md+ */}
-      {(showContacts || isDesktop) && (
+      {/* Contacts Section and Socials */}
+      {(isXL || showContacts) && (
         <>
-          <div className="block md:block w-full">
-            <div className="mt-6 md:mt-8">
+          <div className={`block w-full ${isXL ? "xl:block" : ""}`}>
+            <div className={`mt-6 ${isXL ? "xl:mt-8" : ""}`}>
               <div className="w-full h-[1px] bg-white/20 mb-6"></div>
               <div className="space-y-6">
                 {/* Email Section */}
@@ -107,7 +110,7 @@ const Sidebar = () => {
                 <div className="flex items-center gap-3">
                   <div className="bg-[#2a2a2a] p-2 rounded-lg flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.11 19.42 19.42 0 01-6-6A19.86 19.86 0 013.11 4.18 2 2 0 015.11 2h3a2 2 0 012 1.72 12.66 12.66 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.66 12.66 0 002.81.7 2 2 0 011.72 2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.11 19.42-19.42 0 01-6-6A19.86 19.86 0 013.11 4.18 2 2 0 015.11 2h3a2 2 0 012 1.72 12.66 12.66 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.66 12.66 0 002.81.7 2 2 0 011.72 2z" />
                     </svg>
                   </div>
                   <div className="flex flex-col items-start">
@@ -131,10 +134,8 @@ const Sidebar = () => {
               </div>
             </div>
           </div>
-          
           {/* Social Icons */}
-          
-          <div className="flex justify-center gap-4 mt-8">
+ <div className="flex justify-center gap-4 mt-8">
  <a  
 
           href="https://www.instagram.com/Utkarsh._.009"  
@@ -236,3 +237,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+

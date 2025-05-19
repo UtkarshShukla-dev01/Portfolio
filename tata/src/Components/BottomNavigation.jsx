@@ -21,7 +21,9 @@ export default function BottomNavigation({ currentSection, setCurrentSection }) 
               : "text-gray-300"
           }`}
         >
-          {item.label}
+          <span className="block w-full text-center truncate overflow-hidden whitespace-nowrap">
+            {item.label}
+          </span>
         </button>
       ))}
     </nav>

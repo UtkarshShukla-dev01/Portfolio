@@ -1,22 +1,15 @@
 import { useState } from "react";
 
 import About from "./Components/About";
-
 import Resume from "./Components/Resume";
-
 import Projects from "./Components/Projects";
-
 import Contact from "./Components/Contact";
-
 import Sidebar from "./Components/Sidebar";
-
 import Navigation from "./Components/Navigation";
-
 import Certificates from "./Components/Certificates"; // Import Certificates component
+import BottomNavigation from "./Components/BottomNavigation";
 
 import "./App.css";
-
-import BottomNavigation from "./Components/BottomNavigation";
 
 function App() {
   const [currentSection, setCurrentSection] = useState("about");
@@ -40,12 +33,12 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#121212] flex flex-col md:flex-row">
+      <div className="min-h-screen bg-[#121212] flex flex-col gap-5 xl:flex-row ">
         <Sidebar />
 
-        <div className="w-full max-w-[1100px] mx-auto p-6 md:ml-[340px] pb-28 md:pb-0">
-          <div className="bg-[#1E1E1F] rounded-3xl min-h-[calc(100vh-64px)] relative w-[550px] md:w-full mx-auto">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between px-6 pt-6">
+        <div className="w-full p-0 pb-28 xl:w-full xl:max-w-[1100px] xl:ml-[370px] xl:p-0 xl:pb-0 xl:mt-8 xl:mr-8">
+          <div className="w-[95vw] max-w-[980px] mx-auto bg-[#1E1E1F] rounded-3xl min-h-[calc(100vh-64px)] relative p-6 xl:w-full xl:max-w-full xl:mx-0">
+            <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between px-6 pt-6">
               <div>
                 <h2 className="text-[#FAFAFA] text-[32px] font-bold font-[Poppins] mb-2">
                   {getHeading()}
@@ -54,7 +47,7 @@ function App() {
               </div>
 
               {/* Desktop Navigation */}
-              <div className="hidden md:block">
+              <div className="hidden xl:block">
                 <Navigation
                   currentSection={currentSection}
                   setCurrentSection={setCurrentSection}
@@ -75,7 +68,7 @@ function App() {
 
       {/* Mobile Fixed Bottom Navigation */}
       <div
-        className="fixed left-0 w-full z-[9999] md:hidden"
+        className="fixed left-0 w-full z-[9999] xl:hidden"
         style={{ bottom: 0 }}
       >
         <div className="bg-gradient-to-r from-[#232325]/80 to-[#232325]/60 rounded-t-3xl shadow-xl px-2 py-2 border-t border-[#333]/60 backdrop-blur-lg bg-opacity-80">
@@ -88,4 +81,5 @@ function App() {
     </>
   );
 }
+
 export default App;

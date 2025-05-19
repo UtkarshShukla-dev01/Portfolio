@@ -42,7 +42,7 @@ const Resume = () => {
   );
 
   return (
-    <div className={`bg-[#1E1E1F] p-8 rounded-3xl shadow-lg ${isLargeScreen ? 'w-full md:w-[1000px] mx-auto' : ''}`}>
+    <div className="bg-[#1E1E1F] p-8 rounded-3xl shadow-lg">
       <h2 className="text-4xl font-bold text-white mb-6 text-center">
         <img  
           src="https://cdn0.iconfinder.com/data/icons/find-a-job-and-interview-filled-outline/512/interview_business_job_offer_manager_employment_resume_contract_employee-128.png"  
@@ -50,7 +50,7 @@ const Resume = () => {
           className="mx-auto w-16 h-16"
         />
       </h2>
-      <div className={`w-full ${isLargeScreen ? 'h-[700px]' : 'h-[80vh]'} overflow-hidden rounded-lg shadow-md border border-gray-700 relative`}>
+      <div className="w-full max-w-[980px] mx-auto h-[80vh] overflow-hidden rounded-lg shadow-md border border-gray-700 relative">
         {loading && <Loader />}
         <iframe
           src="/Utkarsh_Shukla_resume_3.pdf"
