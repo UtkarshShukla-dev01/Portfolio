@@ -20,10 +20,10 @@ const SplashIntro = () => {
         className="w-40 h-40 object-contain"
         draggable="false"
       />
-      <h1 className="mt-6 text-5xl font-extrabold text-yellow-400 drop-shadow-lg text-center">
+      <h1 className="mt-6 text-3xl font-extrabold text-yellow-400 drop-shadow-lg text-center">
         There&apos;s a new web dev in town!
       </h1>
-      <p className="mt-4 text-2xl text-gray-300 text-center font-medium">
+      <p className="mt-2 text-lg text-gray-300 text-center font-medium">
         Welcome to my portfolio
       </p>
     </div>
