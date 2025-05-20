@@ -125,13 +125,14 @@ const Certificates = () => {
   );
 
   return (
-    <div className="bg-[#1E1E1F] p-8 rounded-3xl shadow-lg">
-      <h2 className="text-4xl font-bold text-yellow-400 mb-6 text-center">
+    <div className="bg-[#1E1E1F] p-8 rounded-3xl shadow-lg min-h-screen">
+      <h2 className="text-4xl font-extrabold text-yellow-400 mb-6 text-center tracking-wide drop-shadow-lg">
         <img
           src="https://cdni.iconscout.com/illustration/premium/thumb/certificate-illustration-download-in-svg-png-gif-file-formats--cup-crown-scholar-reward-achievement-pack-sports-games-illustrations-2804238.png?f=webp"
           alt="Certificate Icon"
           className="mx-auto w-34 h-40"
         />
+        Certificates
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {certificates.map((certificate, index) => {
@@ -139,20 +140,18 @@ const Certificates = () => {
           return (
             <div
               key={index}
-              className="bg-[#282829] p-6 rounded-lg shadow-lg flex flex-col justify-between hover:shadow-2xl transition-transform duration-300"
+              className="bg-[#282829] p-6 rounded-lg shadow-lg flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:scale-[1.03] animate-fadeIn"
+              style={{ animationDelay: `${index * 80}ms`, animationFillMode: "backwards" }}
             >
               <div>
-                <h3 className="text-lg md:text-2xl font-bold text-yellow-400 mb-1 md:mb-2 max-sm:break-words">
+                <h3 className="text-2xl font-extrabold text-yellow-300 mb-2 max-sm:break-words tracking-tight">
                   {certificate.title}
                 </h3>
-                <p className="text-gray-400 text-xs md:text-base max-sm:break-words">{certificate.description}</p>
-                <p className="text-gray-400 text-xs md:text-sm mt-1">
-                  <strong>Issuer:</strong> {certificate.issuer} | <strong>Date:</strong> {certificate.date}
-                </p>
+                <p className="text-gray-300 text-base mb-2 max-sm:break-words font-medium">{certificate.description}</p>
               </div>
               <div className="mt-4 relative">
                 <a href={pdfPath} target="_blank" rel="noopener noreferrer" title="Click to view PDF">
-                  <div className="relative w-full h-48 sm:h-64 md:h-72 lg:h-80 rounded-md overflow-hidden hover:scale-105 transition-transform duration-300">
+                  <div className="relative w-full h-48 sm:h-64 md:h-72 lg:h-80 rounded-md overflow-hidden hover:scale-105 transition-transform duration-300 shadow-md group">
                     {loadingStates[index] && <Loader />}
                     <img
                       src={certificate.image}
@@ -160,22 +159,18 @@ const Certificates = () => {
                       onLoad={() => handleImageLoad(index)}
                       className={`w-full h-full object-contain cursor-pointer transition-opacity duration-700 ${
                         loadingStates[index] ? "opacity-0" : "opacity-100"
-                      }`}
+                      } group-hover:blur-sm`}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/60 backdrop-blur-md">
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/40">
                       <button
                         type="button"
-                        className="flex items-center gap-2 px-7 py-3 bg-white/90 text-black font-bold rounded-full shadow-xl border-2 border-yellow-400/40 hover:bg-white hover:text-yellow-600 hover:scale-105 hover:shadow-yellow-400/30 transition-all duration-300 backdrop-blur-lg ring-2 ring-yellow-200/20"
+                        className="px-3 py-1.5 bg-white text-blue-600 font-bold rounded-full shadow-md border-2 border-blue-500 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-700 hover:scale-105 transition-all duration-300"
                         style={{
-                          boxShadow: "0 4px 24px 0 rgba(255, 221, 51, 0.10), 0 1.5px 8px 0 rgba(0,0,0,0.10)",
-                          fontSize: "1.15rem",
-                          letterSpacing: "0.03em",
+                          fontSize: "0.88rem",
+                          letterSpacing: "0.01em",
                         }}
                         tabIndex={-1}
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 16V4m0 12l-4-4m4 4l4-4M4 20h16" />
-                        </svg>
                         View PDF
                       </button>
                     </div>
@@ -186,6 +181,17 @@ const Certificates = () => {
           );
         })}
       </div>
+      <style>
+        {`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: none;}
+          }
+          .animate-fadeIn {
+            animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1) both;
+          }
+        `}
+      </style>
     </div>
   );
 };
