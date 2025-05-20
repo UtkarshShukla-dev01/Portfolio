@@ -58,9 +58,9 @@ const Sidebar = () => {
 
       {/* Header Section */}
       <div className={`flex items-center ${isXL ? "xl:flex-col" : ""} w-full`}>
-        <div className={`w-16 h-16 ${isXL ? "xl:w-32 xl:h-32" : ""} bg-[#2a2a2a] rounded-full ${isXL ? "xl:rounded-[25px]" : ""} overflow-hidden`}>
+        <div className={`w-16 h-16 ${isXL ? "xl:w-32 xl:h-32" : ""} bg-[#2a2a2a] rounded-full ${isXL ? "xl:rounded-[48px]" : ""} overflow-hidden`}>
           <img  
-            src="/memoji-dev.png"  
+            src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWtkeDh5MmgzN3ltd3NlOXE1YjdiMWxyc3F3eHdrZ2MydTYzZ2p3dSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/6FWpozKBgrQD4MZwDC/giphy.webp"  
             alt="Profile"  
             className="w-full h-full object-cover" 
           /> 
