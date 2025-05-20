@@ -24,7 +24,7 @@ const SplashIntro = () => {
         There&apos;s a new web dev in town!
       </h1>
       <p className="mt-2 text-lg text-gray-300 text-center font-medium">
-        Welcome to my portfolio.
+        Welcome to my portfolio
       </p>
     </div>
   );
