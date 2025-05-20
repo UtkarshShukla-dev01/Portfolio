@@ -164,10 +164,10 @@ const Certificates = () => {
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/40">
                       <button
                         type="button"
-                        className="px-3 py-1.5 bg-white text-blue-600 font-bold rounded-full shadow-md border-2 border-blue-500 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-700 hover:scale-105 transition-all duration-300"
+                        className="px-5 py-2 bg-white text-blue-600 font-bold rounded-full shadow-md border-2 border-blue-500 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-700 hover:scale-105 transition-all duration-300"
                         style={{
-                          fontSize: "0.88rem",
-                          letterSpacing: "0.01em",
+                          fontSize: "1rem",
+                          letterSpacing: "0.02em",
                         }}
                         tabIndex={-1}
                       >
